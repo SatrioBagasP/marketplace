@@ -34,12 +34,11 @@
             </div>
         </div>
     </div>
-    {{-- {{ url('/product/' . $product->id) }}%0D%0A%0D%0A{{ url('/product/' . $product->id) }} --}}
     <div class="toko mt-5">
         <div class="container b p-3">
             <div class="row">
                 <div class="col-md-1 col-3">
-                    <img class="icon-user w-100" src="IMG_3214.JPG" class="img-thumbnail" alt="...">
+                    <img class="icon-user w-100" src="/img/dummy.JPG" class="img-thumbnail" alt="...">
                 </div>
                 <div class="col-md-10">
                     <div class="nama-toko">

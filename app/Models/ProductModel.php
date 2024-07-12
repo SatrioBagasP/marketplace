@@ -25,8 +25,7 @@ class ProductModel extends Model
         // }
 
         $query->when($filters['search'] ?? false, function ($query, $search) {
-            return $query->join('toko', 'product.toko_id', '=', 'toko.id')
-                ->where('nama_product', 'like', '%' . $search . '%');
+            return $query->where('nama_product', 'like', '%' . $search . '%');
         })->orderBy('product.created_at', 'desc');;
 
         $query->when($filters['category'] ?? false, function ($query, $category) {

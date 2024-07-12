@@ -12,6 +12,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
     </script>
+
+    {{-- Sweet Alert --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
     <style>
         .r {
             background-color: #fb5533;
@@ -118,7 +122,12 @@
         }
 
         .min-card {
-            height: 50px;
+            height: 60px;
+            font-size: 18px;
+        }
+        .harga
+        {
+            font-size: 14px;
         }
     </style>
     <title>Document</title>
@@ -153,17 +162,22 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                    Dropdown link
+                                    Wellcome, {{Auth::user()->name}}!
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li>
+                                        <form action="/logout" method="post">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item"><i
+                                                    class="bi bi-box-arrow-right"></i>Logout</button>
+                                        </form>
+                                    </li>
+                                    <li><a class="dropdown-item" href="/dashboard">Profile</a></li>
                                 </ul>
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Login</a>
+                                <a class="nav-link" href="login">Login</a>
                             </li>
                         @endauth
                     </ul>
@@ -188,7 +202,7 @@
                         @endif
                         <div class="input-group">
                             <input class="form-control" name="search" type="search"
-                                placeholder="Daftar & Dapat Voucher Gratis" aria-label="Search">
+                                placeholder="{{ request()->has('toko') ? 'Cari yang ada di toko ini' : 'Cari Product'}}" aria-label="Search">
                             <div class="ms-1">
                                 <button class="b btn btn-outline-success t" type="submit">
                                     <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
@@ -267,5 +281,23 @@
         </div>
         <!-- Copyright -->
     </footer>
+
+       {{-- Sweet --}}
+       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+       @if (session()->has('datachange'))
+       <script>
+           document.addEventListener('DOMContentLoaded', function() {
+               Swal.fire('Success!', '{{ session('masuk') }}', 'success');
+           });
+       </script>
+   @endif
+   @if (session()->has('masuk'))
+   <script>
+       document.addEventListener('DOMContentLoaded', function() {
+           Swal.fire('Success!', '{{ session('masuk') }}', 'success');
+       });
+   </script>
+@endif
 
 </html>
