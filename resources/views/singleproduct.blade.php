@@ -5,7 +5,7 @@
         <div class="container b p-3">
             <div class="row">
                 <div class="col-md-6">
-                    <img id="product-image" class="image" src="/img/dummy.jpg" alt="">
+                    <img id="product-image" class="image" src="{{ asset('storage/' . $product->image) }}" alt="">
                 </div>
                 <div class="col-md-6">
                     <div class="judul mt-3">
@@ -18,17 +18,18 @@
                     </div>
                     <div class=" mt-3">
                         {!! $product->desc !!}
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, totam maxime. Veniam magni explicabo
-                        commodi necessitatibus modi ratione nesciunt velit, harum reprehenderit minus doloribus ipsum autem
-                        ab quis optio repellendus!
                     </div>
-                    <div class="button mt-4 mb-5">
+                    <div class="button mt-4 mb-5 d-flex">
                         <a href="https://api.whatsapp.com/send?phone=62{{ $product->toko->notlpn }}&text=Halo+saya+ingin+bertanya+mengenai+%3A%0D%0A%0D%0A*{{ $product->nama_product }}*%0D%0A*Harga : *%20Rp {{ number_format($product->harga, 0, ',', '.') }}%0D%0A*Link:*%20http://127.0.0.1:8000/singleproduct/999%0D%0ATerima+Kasih"
-                            target="_blank"><button type="button" class="btn btn-success">Beli Melalui
+                            target="_blank"><button type="button" class="btn btn-success m-1">Beli Melalui
                                 Whatsapp</button></a>
 
+                        <form action="/addtocart" method="POST" class="m-1">
+                            @csrf
+                            <input type="hidden" value="{{ $product->id }}" name="id">
+                            <button type="submit" class="btn btn-success">Tambah Ke Keranjang</button>
+                        </form>
 
-                        <button type="button" class="btn btn-success">Tambah Ke Keranjang</button>
                     </div>
                 </div>
             </div>
@@ -38,7 +39,8 @@
         <div class="container b p-3">
             <div class="row">
                 <div class="col-md-1 col-3">
-                    <img class="icon-user w-100" src="/img/dummy.JPG" class="img-thumbnail" alt="...">
+                    <img class="icon-user w-100" src="{{ asset('storage/' . $product->toko->image) }}" class="img-thumbnail"
+                        alt="...">
                 </div>
                 <div class="col-md-10">
                     <div class="nama-toko">

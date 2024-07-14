@@ -10,23 +10,18 @@ class ProductModel extends Model
     use HasFactory;
     protected $table = 'product';
     protected $fillable = [
-        'nama',
+        'nama_product',
         'harga',
-        'descc',
+        'desc',
         'image',
         'category_id',
         'toko_id',
     ];
     public function scopeSearch($query, array $filters)
     {
-        // if (isset($filters['search']) ? $filters['search'] : false) {
-        //     return $query->where('title', 'like', '%' . $filters['search'] . '%')
-        //         ->orWhere('body', 'like', '%' . $filters['search'] . '%');
-        // }
-
         $query->when($filters['search'] ?? false, function ($query, $search) {
             return $query->where('nama_product', 'like', '%' . $search . '%');
-        })->orderBy('product.created_at', 'desc');;
+        })->orderBy('created_at', 'desc');;
 
         $query->when($filters['category'] ?? false, function ($query, $category) {
             return $query->whereHas('category', function ($query) use ($category) {
@@ -47,5 +42,9 @@ class ProductModel extends Model
     public function toko()
     {
         return $this->belongsTo(TokoModel::class);
+    }
+    public function keranjang()
+    {
+        return $this->hasMany(KeranjangModel::class);
     }
 }

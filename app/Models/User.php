@@ -49,4 +49,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(TokoModel::class);
     }
+    public function keranjang()
+    {
+        return $this->belongsTo(KeranjangModel::class);
+    }
 }

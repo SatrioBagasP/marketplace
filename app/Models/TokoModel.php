@@ -13,6 +13,7 @@ class TokoModel extends Model
         'image',
         'users_id',
         'desc',
+        'notlpn',
         'nama'
     ];
 

@@ -1,19 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>SB Admin 2 - Login</title>
 
-    {{-- icon --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
-    <link rel="stylesheet" href="/css/style.css">
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     {{-- Sweet Alert --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -22,24 +27,35 @@
     {{-- Toaster --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+    <style>
+        .r {
+            background-color: #cb3c02;
+        }
 
+        .p {
+            width: 100%;
+        }
+    </style>
 
-    <title>Login</title>
 </head>
 
-<body>
+<body class="r">
 
     <div class="container">
-        @yield('isi') {{-- Di isi dari nama section masing2 view, disamakan aja biar enak --}}
+
+        @yield('isi')
+
     </div>
 
-    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
     {{-- Sweet --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -59,25 +75,17 @@
     @if (session()->has('error'))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire('Success!', '{{ session('error') }}', 'error');
+                Swal.fire('Something Wrong!', '{{ session('error') }}', 'error');
             });
         </script>
     @endif
     @if (session()->has('datachange'))
-       <script>
-           document.addEventListener('DOMContentLoaded', function() {
-               Swal.fire('Success!', '{{ session('datachange') }}', 'success');
-           });
-       </script>
-   @endif
-    {{-- @if (session()->has('success'))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                toastr.success('{{ session('success') }}', 'Success');
+                Swal.fire('Success!', '{{ session('datachange') }}', 'success');
             });
         </script>
-    @endif --}}
-
+    @endif
 
 </body>
 

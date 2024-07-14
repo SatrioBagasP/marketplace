@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('toko_id')->constrained('toko');
             $table->foreignId('category_id')->constrained('category');
             $table->string('nama_product');
+            $table->string('image');
             $table->integer('harga');
             $table->text('desc');
             $table->timestamps();

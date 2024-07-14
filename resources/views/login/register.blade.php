@@ -1,47 +1,49 @@
 @extends('login.layout')
 @section('isi')
-<div class="row justify-content-center p align-items-center">
-    <div class="col-lg-5">
-        <main class="form-registration">
-            <form action="/register" method="post">
-                @csrf
-                <h1 class="h3 mb-3 fw-normal">Form Registrasi</h1>
-                <div class="form-floating">
-                    <input type="text" name="name"
-                        class="form-control rounded-top @error('name') is-invalid @enderror" id="name"
-                        placeholder="Satrio" value="{{ old('name') }}">
-                    <label for="name">Nama</label>
-                    @error('name')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+                <div class="col-lg-5 d-flex justify-content-center">
+                    <img class="p" src="/img/logo-white.png" alt="">
                 </div>
-                <div class="form-floating">
-                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                        id="email" placeholder="name@example.com" value="{{ old('email') }}">
-                    <label for="email">Email address</label>
-                    @error('email')
-                        <div class="invalid-feedback">
-                            {{ $message }}
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                         </div>
-                    @enderror
-                </div>
-                <div class="form-floating">
-                    <input type="password" name="password"
-                        class="form-control rounded-bottom @error('password') is-invalid @enderror" id="password"
-                        placeholder="Password">
-                    <label for="password">Password</label>
-                    @error('password')
-                        <div class="invalid-feedback">
-                            {{ $message }}
+                        <form class="user" action="/register" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                    placeholder="Username" name="name" value="{{ old('name') }}">
+                                @error('name')
+                                    <p class="small text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                    placeholder="Email Address" name="email" value="{{ old('email') }}">
+                                @error('email')
+                                    <p class="small text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control form-control-user" id="exampleInputPassword"
+                                    placeholder="Password" name="password">
+                                @error('password')
+                                    <p class="small text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <button class="btn btn-primary btn-user btn-block" type="submit">Register Account</button>
+                        </form>
+                        <hr>
+                        <div class="text-center">
+                            <a class="small" href="/login">Already have an account? Login!</a>
                         </div>
-                    @enderror
+                    </div>
                 </div>
-                <button class="w-100 btn btn-lg btn-primary mt-4" type="submit">Register</button>
-            </form>
-            <center> <small>Already Registered? <a href="/login">Login Now</a></small></center>
-        </main>
+            </div>
+        </div>
     </div>
-</div>
 @endsection

@@ -17,12 +17,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(2)->create();
+        // User::factory(2)->create();
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::create([
+            'name' => 'Nikko Syafikri',
+            'email' => 'nikko@gmail.com',
+            'password' => bcrypt('12345678'),
+        ]);
+        User::create([
+            'name' => 'Sobri Saputra',
+            'email' => 'sobri@gmail.com',
+            'password' => bcrypt('12345678'),
+        ]);
+        User::create([
+            'name' => 'Satrio Bagas ',
+            'email' => 'satrio@gmail.com',
+            'password' => bcrypt('12345678'),
+        ]);
+
         CategoryModel::create([
             'nama' => 'Komputer',
             'image' => 'komp.png'
@@ -46,17 +58,17 @@ class DatabaseSeeder extends Seeder
 
         TokoModel::create([
             'users_id' => 1,
-            'nama' => 'Toko Pertama',
-            'image' => 'test',
-            'notlpn' => '081336180467',
-            'desc' => 'LOL'
+            'nama' => 'Nikko Chan Store',
+            'image' => 'undraw_profile.svg',
+            'notlpn' => '082257789541',
+            'desc' => 'Toko ini terpercaya karena dikelola oleh Nikko sang Buaya'
         ]);
         TokoModel::create([
             'users_id' => 2,
-            'nama' => 'Toko Ke Dua',
-            'image' => 'test',
+            'nama' => 'Sobri Botak Store',
+            'image' => 'undraw_profile.svg',
             'notlpn' => '082229979283',
-            'desc' => 'LOL'
+            'desc' => 'Menyediakan berbagai macam suplemen untuk kita'
         ]);
 
         ProductModel::factory(1000)->create();

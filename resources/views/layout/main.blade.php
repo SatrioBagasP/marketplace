@@ -125,26 +125,22 @@
             height: 60px;
             font-size: 18px;
         }
-        .harga
-        {
+
+        .harga {
             font-size: 14px;
+        }
+
+        .h {
+            min-height: 65vh;
+        }
+
+        .logo {
+            width: 150px;
+            height: 50px;
         }
     </style>
     <title>Document</title>
 </head>
-{{-- <form action="/blog" method="get">
-    @if (request('category'))
-        <input type="hidden" name="category" value="{{ request('category') }}">
-    @endif
-    @if (request('author'))
-        <input type="hidden" name="author" value="{{ request('author') }}">
-    @endif
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Cari Judul" name="search"
-            value="{{ request('search') }}">
-        <button class="btn btn-primary" type="submit">Cari</button>
-    </div>
-</form> --}}
 
 <body class="bg-body-tertiary">
     <nav class="r">
@@ -162,9 +158,10 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                    Wellcome, {{Auth::user()->name}}!
+                                    Wellcome, {{ Auth::user()->name }}!
                                 </a>
                                 <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/dashboard">Profile</a></li>
                                     <li>
                                         <form action="/logout" method="post">
                                             @csrf
@@ -172,7 +169,6 @@
                                                     class="bi bi-box-arrow-right"></i>Logout</button>
                                         </form>
                                     </li>
-                                    <li><a class="dropdown-item" href="/dashboard">Profile</a></li>
                                 </ul>
                             </li>
                         @else
@@ -186,12 +182,14 @@
         </div>
         <div class="container p-3">
             <div class="row">
-                <div class="col-2 d-flex align-items-center">
+                <div class="col-2 d-flex align-items-center justify-content-center">
                     <div class="logo">
-                        <a href="/" class="navbar-brand">Navbar</a>
+                        <a href="/" class="navbar-brand">
+                            <img class="logo" src="/img/logo.png" alt="">
+                        </a>
                     </div>
                 </div>
-                <div class="col-8 d-flex">
+                <div class="col-9 d-flex">
                     <form class="d-flex overflow-hidden w-100" action="/" role="search" method="get">
                         @csrf
                         @if (request('category'))
@@ -202,9 +200,10 @@
                         @endif
                         <div class="input-group">
                             <input class="form-control" name="search" type="search"
-                                placeholder="{{ request()->has('toko') ? 'Cari yang ada di toko ini' : 'Cari Product'}}" aria-label="Search">
+                                placeholder="{{ request()->has('toko') ? 'Cari yang ada di toko ini' : 'Cari Product' }}"
+                                aria-label="Search">
                             <div class="ms-1">
-                                <button class="b btn btn-outline-success t" type="submit">
+                                <button class="b btn btn-outline-success" type="submit">
                                     <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                         viewBox="0 0 24 24">
@@ -216,19 +215,22 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-2 d-flex align-items-center justify-content-end">
+                <div class="col-1 d-flex align-items-center justify-content-end">
                     @auth
-                        <a href="" class="position-relative">
+                        <a href="/keranjang" class="position-relative">
                             <svg class="cart" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312" />
                             </svg>
-                            <span
-                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-danger">
-                                50
-                                <span class="visually-hidden">unread messages</span>
-                            </span>
+                            @if (isset($notif) && $notif != null)
+                                <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-danger">
+                                    {{ $notif }}
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            @endif
+
                         </a>
                     @endauth
 
@@ -249,7 +251,6 @@
                 <!--Grid column-->
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
                     <h5 class="text-uppercase">Footer text</h5>
-
                     <p>
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
                         molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
@@ -282,22 +283,29 @@
         <!-- Copyright -->
     </footer>
 
-       {{-- Sweet --}}
-       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- Sweet --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-       @if (session()->has('datachange'))
-       <script>
-           document.addEventListener('DOMContentLoaded', function() {
-               Swal.fire('Success!', '{{ session('masuk') }}', 'success');
-           });
-       </script>
-   @endif
-   @if (session()->has('masuk'))
-   <script>
-       document.addEventListener('DOMContentLoaded', function() {
-           Swal.fire('Success!', '{{ session('masuk') }}', 'success');
-       });
-   </script>
-@endif
+    @if (session()->has('datachange'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire('Success!', '{{ session('datachange') }}', 'success');
+            });
+        </script>
+    @endif
+    @if (session()->has('masuk'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire('Success!', '{{ session('masuk') }}', 'success');
+            });
+        </script>
+    @endif
+    @if (session()->has('error'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire('error!', '{{ session('error') }}', 'error');
+            });
+        </script>
+    @endif
 
 </html>

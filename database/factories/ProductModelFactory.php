@@ -22,7 +22,8 @@ class ProductModelFactory extends Factory
             'harga' => $this->faker->numberBetween(10000, 1000000),
             'desc' => '<p>' . implode('</p><p>', $this->faker->paragraphs(mt_rand(5, 10))) . '</p>',
             'toko_id' => mt_rand(1, 2),
-            'category_id' => mt_rand(1, 5)
+            'category_id' => mt_rand(1, 5),
+            'image' => 'default-product-image.png',
         ];
     }
 }
