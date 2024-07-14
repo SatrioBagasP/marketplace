@@ -5,7 +5,7 @@
             <!-- Nested Row within Card Body -->
             <div class="row">
                 <div class="col-lg-5 d-flex justify-content-center">
-                    <img class="p" src="/img/logo-white.png" alt="">
+                    <img class="p" src="/img/logo-nigga.png" alt="">
                 </div>
                 <div class="col-lg-7">
                     <div class="p-5">
