@@ -20,7 +20,7 @@
                         {!! $product->desc !!}
                     </div>
                     <div class="button mt-4 mb-5 d-flex">
-                        <a href="https://api.whatsapp.com/send?phone=62{{ $product->toko->notlpn }}&text=Halo+saya+ingin+bertanya+mengenai+%3A%0D%0A%0D%0A*{{ $product->nama_product }}*%0D%0A*Harga : *%20Rp {{ number_format($product->harga, 0, ',', '.') }}%0D%0A*Link:*%20http://127.0.0.1:8000/singleproduct/999%0D%0ATerima+Kasih"
+                        <a href="https://api.whatsapp.com/send?phone=62{{ $product->toko->notlpn }}&text=Halo+saya+ingin+bertanya+mengenai+%3A%0D%0A%0D%0A*{{ $product->nama_product }}*%0D%0A*Harga : *%20Rp {{ number_format($product->harga, 0, ',', '.') }}%0D%0A*Link:*%20http://127.0.0.1:8000/singleproduct/{{ $product->id }}%0D%0ATerima+Kasih"
                             target="_blank"><button type="button" class="btn btn-success m-1">Beli Melalui
                                 Whatsapp</button></a>
 

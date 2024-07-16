@@ -38,6 +38,7 @@ class MainController extends Controller
         $post['product_id'] = $request->id;
         $post['users_id'] = Auth::user()->id;
         $exist = KeranjangModel::where('users_id', Auth::user()->id)->get();
+
         foreach ($exist as $data) {
             if ($data->product_id == $request->id) {
                 return back()->with('error', 'Product sudah ada di keranjang');
@@ -45,5 +46,12 @@ class MainController extends Controller
         }
         KeranjangModel::create($post);
         return back()->with('datachange', 'Product telah dimasukan ke keranjang');
+    }
+    public function delcart(Request $request)
+    {
+        KeranjangModel::where('product_id', $request->id)
+            ->where('users_id', Auth::user()->id)
+            ->delete();
+        return back()->with('datachange', 'Product telah dihapus dari keranjang');
     }
 }

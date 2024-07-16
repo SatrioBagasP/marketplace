@@ -21,6 +21,7 @@ Route::get('/', [MainController::class, 'index']);
 Route::get('/singleproduct/{id?}', [MainController::class, 'single'])->middleware('auth');
 Route::get('/keranjang', [MainController::class, 'keranjang'])->middleware('auth');
 Route::post('/addtocart', [MainController::class, 'addToCart'])->middleware('auth');
+Route::post('/delcart', [MainController::class, 'delcart'])->middleware('auth');
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');

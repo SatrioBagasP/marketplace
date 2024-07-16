@@ -13,9 +13,14 @@
                                 {{ $data->product->nama_product }}
                             </h4>
                         </div>
-                        <div class="button">
+                        <div class="button d-flex">
                             <a href="/singleproduct/{{ $data->product->id }}"><button type="button"
-                                    class="btn btn-success">Lihat Produk</button></a>
+                                    class="btn btn-success m-1">Lihat Produk</button></a>
+                            <form action="/delcart" class="m-1" method="post">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $data->product->id }}">
+                                <button type="submit" class="btn btn-danger">Hapus Produk Dari Keranjang</button>
+                            </form>
 
                         </div>
                     </div>
